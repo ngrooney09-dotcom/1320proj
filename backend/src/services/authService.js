@@ -42,7 +42,12 @@ export default {
       (u) => u.username === username && u.password === password
     );
 
-    if (!user) return null;
+
+    if (!user) {
+      const err = new Error("Invalid username or password");
+      err.statusCode = 401; 
+      throw err;
+    }
 
     const tokenPayload = {
       userId: user.id,

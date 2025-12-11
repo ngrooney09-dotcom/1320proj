@@ -21,8 +21,9 @@ const authRoutes = ({ authService }) => ({
         password,
         profilePicture,
       });
-        response.writeHead(201, DEFAULT_HEADER);
-        return response.end(JSON.stringify({ user }));
+
+      response.writeHead(201, DEFAULT_HEADER);
+      return response.end(JSON.stringify({ user }));
 
     } catch (err) {
       response.writeHead(err.statusCode || 400, DEFAULT_HEADER);
@@ -48,9 +49,10 @@ const authRoutes = ({ authService }) => ({
         username,
         password,
       });
-      // TODO: if user is null than return 401 error with error message
+
       response.writeHead(200, DEFAULT_HEADER);
       return response.end(JSON.stringify({ token, user }));
+
     } catch (err) {
       response.writeHead(err.statusCode || 500, DEFAULT_HEADER);
       return response.end(JSON.stringify({ error: err.message }));
